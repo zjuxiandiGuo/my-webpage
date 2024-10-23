@@ -1,69 +1,87 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"> 
-		<title>晚安</title>
-		<style>
-			body{
-				width: 100%;
-				height: 100vh;
-				overflow: auto;
-			}
-			div{
-				width: 62%;
-				margin-top: 40%;
-				margin: auto;
-			}
-			div button{
-				width: 80px;
-				height: 50px;
-				font-size: 20px;
-			}
-			h1{
-				font-size: 1.5rem;
-			}
-			p{
-				font-size: 0.8rem;
-			}
-		</style>
-	</head>
-	<body>
-		<div>
-			<h1>小猪，晚安</h1>
-			<button id="yes">晚安</button>
-			<button id="no">我不是小猪</button>
-			<h1>什么？你不是小猪？</h1>
-			<button id="yes">算了算了，承认自己是小猪好了，晚安</button>
-			<button id="no">不，坚决不承认自己是小猪</button>
-			<h1>快睡了快睡了，再问一下下，你是不是小猪？</h1>
-			<button id="yes">是小猪就小猪，晚安</button>
-			<button id="no">不，我不是</button>
-			<h1>看在我搞了那么久的份上要不承认一下？</h1>
-			<button id="yes">承认自己是小猪</button>
-			<button id="no">不，我不是（铁石心肠）</button>
-			<p id="p"></p>
-		</div>
-	</body>
-	<script>
-		window.onload=function(){
-			var yes=document.getElementById("yes");
-			var no=document.getElementById("no");
-			var p=document.getElementById("p");
-			yes.onclick=function(){
-				alert("哈哈哈！！！这才乖，你是猪");
-			}
-			
-			var z=new Array("怎么？不承认？","承认了吧，没人笑你","快承认了吧","哼，那我消失了","不承认，真消失了","好，当你承认了哈哈哈");
-			var i=0
-			no.onclick=function(){
-				p.innerHTML +=z[i]+"<br>";
-				if(i>4){
-					this.style.display="none";
-				}else{
-					i++;
-				}
-			}
-		}
-	</script>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title>晚安</title>
+    <style>
+        body {
+            width: 100%;
+            height: 100vh;
+            overflow: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        div {
+            width: 62%;
+            margin: auto;
+            text-align: center;
+        }
+        div button {
+            width: 80px;
+            height: 50px;
+            font-size: 20px;
+            margin: 10px;
+        }
+        h1 {
+            font-size: 1.5rem;
+        }
+        p {
+            font-size: 0.8rem;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>小猪，晚安</h1>
+        <button id="yes">晚安</button>
+        <button id="no">我不是小猪</button>
+	    <h1 id="response1" style="display:none;">什么？你不是小猪？</h1>
+    <button id="yes" style="display:none;">算了算了，承认自己是小猪好了，晚安</button>
+    <button id="no" style="display:none;">不，坚决不承认自己是小猪</button>
+
+    <h1 id="response2" style="display:none;">快睡了快睡了，再问一下下，你是不是小猪？</h1>
+    <button id="yes" style="display:none;">是小猪就小猪，晚安</button>
+    <button id="no" style="display:none;">不，我不是</button>
+
+    <h1 id="response3" style="display:none;">看在我搞了那么久的份上要不承认一下？</h1>
+    <button id="yes" style="display:none;">承认自己是小猪</button>
+    <button id="no" style="display:none;">不，我不是（铁石心肠）</button>
+
+    <h1 id="finalResponse" style="display:none;"></h1>
+        <p id="p"></p>
+    </div>
+
+    <script>
+        window.onload = function () {
+            var yes = document.getElementById("yes");
+            var no = document.getElementById("no");
+            var p = document.getElementById("p");
+
+            // 点击 "晚安" 按钮
+            yes.onclick = function () {
+                alert("哈哈哈！！！这才乖，你是小猪，晚安！");
+            }
+
+            // 点击 "我不是小猪" 按钮显示的提示
+            var responses = ["怎么？不承认？", "承认了吧，没人笑你", "快承认了吧", "哼，那我消失了", "不承认，真消失了", "好，当你承认了哈哈哈"];
+            var i = 0;
+
+            // 点击 "我不是小猪" 按钮
+            no.onclick = function () {
+                if (i < responses.length) {
+                    p.innerHTML += responses[i] + "<br>";  // 显示新的提示
+                    i++;
+                }
+
+                // 当显示到最后一个提示时，隐藏按钮
+                if (i === responses.length) {
+                    no.style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
 </html>
