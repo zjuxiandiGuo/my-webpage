@@ -38,19 +38,6 @@
         <h1>小猪，晚安</h1>
         <button id="yes">晚安</button>
         <button id="no">我不是小猪</button>
-	    <h1 id="response1" style="display:none;">什么？你不是小猪？</h1>
-    <button id="yes" style="display:none;">算了算了，承认自己是小猪好了，晚安</button>
-    <button id="no" style="display:none;">不，坚决不承认自己是小猪</button>
-
-    <h1 id="response2" style="display:none;">快睡了快睡了，再问一下下，你是不是小猪？</h1>
-    <button id="yes" style="display:none;">是小猪就小猪，晚安</button>
-    <button id="no" style="display:none;">不，我不是</button>
-
-    <h1 id="response3" style="display:none;">看在我搞了那么久的份上要不承认一下？</h1>
-    <button id="yes" style="display:none;">承认自己是小猪</button>
-    <button id="no" style="display:none;">不，我不是（铁石心肠）</button>
-
-    <h1 id="finalResponse" style="display:none;"></h1>
         <p id="p"></p>
     </div>
 
@@ -58,25 +45,31 @@
         window.onload = function () {
             var yes = document.getElementById("yes");
             var no = document.getElementById("no");
-            var p = document.getElementById("p");
-
+            
             // 点击 "晚安" 按钮
             yes.onclick = function () {
                 alert("哈哈哈！！！这才乖，你是小猪，晚安！");
             }
 
-            // 点击 "我不是小猪" 按钮显示的提示
-            var responses = ["怎么？不承认？", "承认了吧，没人笑你", "快承认了吧", "哼，那我消失了", "不承认，真消失了", "好，当你承认了哈哈哈"];
+            // 点击 "我不是小猪" 按钮时依次弹出对话框
+            var responses = [
+                "什么？你不是小猪？", 
+                "算了算了，承认自己是小猪好了，晚安", 
+                "快睡了快睡了，再问一下下，你是不是小猪？", 
+                "看在我搞了那么久的份上要不承认一下？", 
+                "承认自己是小猪", 
+                "哈哈哈，终于承认了，晚安！"
+            ];
             var i = 0;
 
             // 点击 "我不是小猪" 按钮
             no.onclick = function () {
                 if (i < responses.length) {
-                    p.innerHTML += responses[i] + "<br>";  // 显示新的提示
+                    alert(responses[i]);  // 弹出新的对话框
                     i++;
                 }
 
-                // 当显示到最后一个提示时，隐藏按钮
+                // 当弹出到最后一个对话时，隐藏按钮
                 if (i === responses.length) {
                     no.style.display = "none";
                 }
