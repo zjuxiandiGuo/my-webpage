@@ -19,63 +19,83 @@
             text-align: center;
         }
         div button {
-            width: 150px;   /* 调整按钮宽度 */
-            height: 60px;   /* 调整按钮高度 */
-            font-size: 22px;  /* 调整字体大小 */
+            font-size: 18px;
+            padding: 10px 20px;
             margin: 10px;
-            border-radius: 8px; /* 增加圆角效果 */
+            border-radius: 8px;
         }
         h1 {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
         }
         p {
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             color: gray;
         }
     </style>
 </head>
 <body>
     <div id="content">
-        <h1>小猪，晚安</h1>
+        <h1>小猪祎祎，晚安</h1>
         <button id="yes">晚安</button>
         <button id="no">我不是小猪</button>
-        <p id="p"></p>
     </div>
 
     <script>
         window.onload = function () {
+            var content = document.getElementById("content");
             var yes = document.getElementById("yes");
             var no = document.getElementById("no");
-            
-            // 点击 "晚安" 按钮
+
+            // 点击 "晚安" 按钮，直接显示结果并清空页面
             yes.onclick = function () {
                 alert("哈哈哈！！！这才乖，你是小猪，晚安！");
                 document.body.innerHTML = "";  // 清空页面
             }
 
-            // 点击 "我不是小猪" 按钮时依次弹出对话框
-            var responses = [
-                "什么？你不是小猪？", 
-                "算了算了，承认自己是小猪好了，晚安", 
-                "快睡了快睡了，再问一下下，你是不是小猪？", 
-                "看在我搞了那么久的份上要不承认一下？", 
-                "承认自己是小猪", 
-                "哈哈哈，终于承认了，晚安！"
-            ];
-            var i = 0;
-
-            // 点击 "我不是小猪" 按钮
+            // 点击 "我不是小猪" 按钮，改变页面内容
             no.onclick = function () {
-                if (i < responses.length) {
-                    alert(responses[i]);  // 弹出新的对话框
-                    i++;
-                }
+                // 更新页面为“什么？你不是小猪？”
+                content.innerHTML = `
+                    <h1>什么？你不是小猪？</h1>
+                    <button id="yes">算了算了，我是小猪好了，睡觉睡觉</button>
+                    <button id="no">坚决不承认自己是小猪</button>
+                `;
 
-                // 当弹出到最后一个对话时，隐藏按钮，并清空页面
-                if (i === responses.length) {
+                // 新的按钮点击事件
+                document.getElementById("yes").onclick = function () {
+                    alert("哈哈哈！！！这才乖，你是小猪，晚安！");
                     document.body.innerHTML = "";  // 清空页面
-                }
-            }
+                };
+
+                document.getElementById("no").onclick = function () {
+                    // 更新页面为“看在我编这么久的份上...”
+                    content.innerHTML = `
+                        <h1>看在我编这么久的份上，小猪快睡觉吧。（上课编的，很闲的你懂的）</h1>
+                        <button id="yes">好了好了睡觉了</button>
+                        <button id="no">不行，我不是小猪（铁石心肠）</button>
+                    `;
+
+                    // 更新按钮点击事件
+                    document.getElementById("yes").onclick = function () {
+                        alert("哈哈哈！！！这才乖，你是小猪，晚安！");
+                        document.body.innerHTML = "";  // 清空页面
+                    };
+
+                    document.getElementById("no").onclick = function () {
+                        // 更新页面为“好吧，好吧，哈哈哈哈...”
+                        content.innerHTML = `
+                            <h1>好吧，好吧，哈哈哈哈，不想再编了，哈哈哈，我就编这么多了。就当你是小猪了，哈哈哈哈，快睡觉吧。</h1>
+                            <button id="yes">我是小猪！哼哼，我去睡觉啦！</button>
+                        `;
+
+                        // 最后的按钮点击事件
+                        document.getElementById("yes").onclick = function () {
+                            alert("哈哈哈！！！这才乖，你是小猪，晚安！");
+                            document.body.innerHTML = "";  // 清空页面
+                        };
+                    };
+                };
+            };
         }
     </script>
 </body>
