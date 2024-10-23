@@ -35,7 +35,7 @@
     </style>
 </head>
 <body>
-    <div>
+    <div id="content">
         <h1>小猪，晚安</h1>
         <button id="yes">晚安</button>
         <button id="no">我不是小猪</button>
@@ -50,6 +50,7 @@
             // 点击 "晚安" 按钮
             yes.onclick = function () {
                 alert("哈哈哈！！！这才乖，你是小猪，晚安！");
+                document.body.innerHTML = "";  // 清空页面
             }
 
             // 点击 "我不是小猪" 按钮时依次弹出对话框
@@ -70,9 +71,9 @@
                     i++;
                 }
 
-                // 当弹出到最后一个对话时，隐藏按钮
+                // 当弹出到最后一个对话时，隐藏按钮，并清空页面
                 if (i === responses.length) {
-                    no.style.display = "none";
+                    document.body.innerHTML = "";  // 清空页面
                 }
             }
         }
